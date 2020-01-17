@@ -1,6 +1,7 @@
 package state
 
 import (
+	"github.com/gdamore/tcell"
 	"github.com/itchyny/bed/layout"
 	"github.com/itchyny/bed/mode"
 )
@@ -27,6 +28,7 @@ type WindowState struct {
 	Offset        int64
 	Cursor        int64
 	Bytes         []byte
+	Colors        []tcell.Color
 	Size          int
 	Length        int64
 	Mode          mode.Mode

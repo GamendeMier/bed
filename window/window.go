@@ -8,6 +8,7 @@ import (
 	"sync"
 	"unicode/utf8"
 
+	"github.com/gdamore/tcell"
 	"github.com/itchyny/bed/buffer"
 	"github.com/itchyny/bed/event"
 	"github.com/itchyny/bed/history"
@@ -343,6 +344,7 @@ func (w *window) state(width, height int) (*state.WindowState, error) {
 		Offset:        w.offset,
 		Cursor:        w.cursor,
 		Bytes:         bytes,
+		Colors:        bytesToColors(bytes),
 		Size:          n,
 		Length:        w.length,
 		Pending:       w.pending,
@@ -351,6 +353,15 @@ func (w *window) state(width, height int) (*state.WindowState, error) {
 		EditedIndices: w.buffer.EditedIndices(),
 		FocusText:     w.focusText,
 	}, nil
+}
+
+func bytesToColors(bytes []byte) []tcell.Color {
+	colors := make([]tcell.Color, len(bytes))
+	// TODO create styles
+	for i := 0; i < len(bytes); i++ {
+		colors[i] = tcell.ColorMediumVioletRed
+	}
+	return colors
 }
 
 func (w *window) insert(offset int64, c byte) {

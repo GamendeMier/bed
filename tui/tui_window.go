@@ -133,6 +133,7 @@ func (ui *tuiWindow) bytesArray(height, width int, s *state.WindowState) ([][]by
 					s.Cursor <= pos && pos <= s.VisualStart) {
 				styles[i][j] = styles[i][j].Underline(true)
 			}
+			styles[i][j] = styles[i][j].Background(s.Colors[k])
 			k++
 		}
 	}
